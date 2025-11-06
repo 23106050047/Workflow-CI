@@ -1,0 +1,25 @@
+{
+  "best_params": {
+    "max_depth": 10,
+    "min_samples_leaf": 1,
+    "min_samples_split": 5,
+    "n_estimators": 50
+  },
+  "metrics": {
+    "accuracy": 0.971606864274571,
+    "f1_macro": 0.8964773031309987,
+    "precision_macro": 0.9844924021370358,
+    "recall_macro": 0.8392993141626726,
+    "matthews_corrcoef": 0.8108956523798164,
+    "roc_auc": 0.9708651795917798,
+    "log_loss": 0.09323764707403356,
+    "train_time_sec": 46.83720779418945,
+    "test_size_ratio": 0.2000083206789674
+  },
+  "data_info": {
+    "n_train": 76916,
+    "n_test": 19230,
+    "n_features": 8,
+    "n_classes": 2
+  }
+}
