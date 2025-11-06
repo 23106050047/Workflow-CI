@@ -1,0 +1,49 @@
+# Prometheus Configuration for ML Model Monitoring
+
+global:
+  scrape_interval: 5s        # Scrape metrics every 5 seconds
+  evaluation_interval: 5s    # Evaluate rules every 5 seconds
+  
+  external_labels:
+    monitor: 'diabetes-prediction-monitor'
+    environment: 'production'
+
+# Alertmanager configuration (optional, untuk alerting)
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+          # - 'localhost:9093'  # Uncomment if using Alertmanager
+
+# Load rules once and periodically evaluate them
+rule_files:
+  # - 'alert_rules.yml'  # Uncomment if you have alert rules
+
+# Scrape configurations
+scrape_configs:
+  # Job 1: Scrape ML Model Metrics from Prometheus Exporter
+  - job_name: 'ml_model_metrics'
+    static_configs:
+      - targets: ['localhost:8000']
+        labels:
+          service: 'diabetes-prediction-model'
+          team: 'ml-ops'
+    
+    # Scrape metrics setiap 5 detik
+    scrape_interval: 5s
+    scrape_timeout: 4s
+    
+    # Relabel untuk menambahkan informasi tambahan
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'ml-exporter'
+  
+  # Job 2: Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+        labels:
+          service: 'prometheus-server'
+    
+    scrape_interval: 10s
