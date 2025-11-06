@@ -13,7 +13,7 @@
     "matthews_corrcoef": 0.8108956523798164,
     "roc_auc": 0.9708651795917798,
     "log_loss": 0.09323764707403356,
-    "train_time_sec": 46.83720779418945,
+    "train_time_sec": 48.387364864349365,
     "test_size_ratio": 0.2000083206789674
   },
   "data_info": {
